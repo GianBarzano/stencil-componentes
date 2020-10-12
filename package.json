@@ -21,7 +21,7 @@
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate",
     "prepare": "echo \"Teste de instalação\" && npm run build",
-    "preinstall": "npm install --ignore-scripts",
+    
     "postinstall": "echo \"Teste de instalação\" && npm run build"
   },
   "dependencies": {
