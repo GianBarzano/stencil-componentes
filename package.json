@@ -10,16 +10,12 @@
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
   "unpkg": "dist/click-company-components/click-company-components.js",
-  "files": [
-    "dist/"
-  ],
   "scripts": {
     "build": "stencil build --docs",
     "start": "stencil build --dev --watch --serve",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
-    "generate": "stencil generate",
-    "postinstall": "npm install && npm run build"
+    "generate": "stencil generate"
   },
   "dependencies": {
     "@stencil/core": "2.0.1"
