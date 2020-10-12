@@ -1,0 +1,19 @@
+{
+  "entries": [
+    "./components/my-alert/my-alert.js",
+    "./components/my-form/my-form.js",
+    "./components/my-input/my-input.js",
+    "./components/my-range/my-range.js",
+    "./components/my-select/my-select.js",
+    "./components/my-tab/my-tab.js",
+    "./components/my-component/my-component.js",
+    "./components/my-tabs/my-tabs.js"
+  ],
+  "compiler": {
+    "name": "@stencil/core",
+    "version": "2.0.1",
+    "typescriptVersion": "4.0.2"
+  },
+  "collections": [],
+  "bundles": []
+}

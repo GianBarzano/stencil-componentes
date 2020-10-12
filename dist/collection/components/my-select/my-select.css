@@ -1,0 +1,93 @@
+:host {
+  display: block;
+}
+
+.my-select {
+  display: block;
+  max-width: 250px;
+}
+.my-select .select-block {
+  display: block;
+  position: relative;
+  height: 25px;
+  border-bottom: 2px solid #aa62f2;
+  padding: 3px 20px 3px 0;
+}
+.my-select .select-block:after {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  top: 10px;
+  right: 2px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  z-index: 9;
+  border-top: 8px solid #271235;
+}
+.my-select .select-block .selected-value {
+  display: block;
+}
+.my-select .select-block .selected-value .value {
+  word-break: break-all;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.my-select .select-block .btn-get-foco {
+  position: absolute;
+  float: left;
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+.my-select .options-block {
+  display: none;
+  background-color: #f2f0f0;
+}
+.my-select .options-block .select-option {
+  padding: 12px 10px;
+  margin: 3px 0;
+  cursor: pointer;
+}
+.my-select .options-block .select-option.checked {
+  background-color: #f2f2f2;
+}
+.my-select .options-block.normal {
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  background-color: white;
+  -webkit-box-shadow: 0px 5px 16px -8px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 5px 16px -8px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 5px 16px -8px rgba(0, 0, 0, 0.75);
+}
+.my-select .options-block.normal .select-option .option-mark input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.my-select .options-block.multiple .select-option {
+  display: flex;
+  align-items: center;
+}
+.my-select .options-block.multiple .select-option .option-mark {
+  height: 10px;
+  width: 10px;
+  border: 1px solid black;
+  margin-right: 5px;
+}
+.my-select .options-block.multiple .select-option.checked .option-mark {
+  background-color: seagreen;
+}
+.my-select.open .select-block:after {
+  border-top: 8px solid #271235;
+  -ms-transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+.my-select.open .options-block {
+  display: block;
+}
