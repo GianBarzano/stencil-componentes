@@ -22,7 +22,7 @@
     "generate": "stencil generate",
     "prepare": "echo \"Teste de instalação\" && npm run build",
     "preinstall": "npm install --ignore-scripts",
-    "postinstall": "npm run build"
+    "postinstall": "echo \"Teste de instalação\" && npm run build"
   },
   "dependencies": {
     "@stencil/core": "2.0.1"
