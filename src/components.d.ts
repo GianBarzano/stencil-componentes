@@ -6,7 +6,9 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { IHidedEvent } from "./components/my-alert/my-alert";
-import { ICampoForm } from "./components/my-form/my-form";
+import { IConfigComponenteFactory } from "./components/my-component-factory/my-component-factory";
+import { IConfigComponenteFactory as IConfigComponenteFactory1 } from "./components/my-component-factory/my-component-factory";
+import { ICampoForm, IConfiguracaoSimulacao } from "./components/my-form/my-form";
 import { IValueChange } from "./components/my-input/my-input";
 import { IValueChange as IValueChange1 } from "./components/my-range/my-range";
 import { ISelectValue, IValueChangeEvent, TSelectValue } from "./components/my-select/my-select";
@@ -16,23 +18,53 @@ export namespace Components {
         "kind": "info" | "success" | "error";
         "text": string;
     }
-    interface MyComponent {
+    interface MyComponentFactory {
         /**
-          * The first name
+          * Eventos do componente retornado
          */
-        "first": string;
+        "arrConfig": IConfigComponenteFactory[];
         /**
-          * The last name
+          * Eventos do componente retornado
          */
-        "last": string;
+        "eventos": any;
         /**
-          * The middle name
+          * Propriedades do componente retornado
          */
-        "middle": string;
+        "propriedades": any;
+        /**
+          * tipo de componente desejado
+         */
+        "tipo": number;
+    }
+    interface MyCustomComponent {
+        /**
+          * Eventos do componente retornado
+         */
+        "eventos": any;
+        /**
+          * Propriedades do componente retornado
+         */
+        "propriedades": any;
+        /**
+          * Tag do componente retornado
+         */
+        "tag": string;
     }
     interface MyForm {
+        /**
+          * Array de configurações da fabricação de componentes do formulário
+         */
+        "arrConfigComponentes": IConfigComponenteFactory[];
+        /**
+          * Array de configuração dos campos que serão apresentados no formulário
+         */
         "campos": ICampoForm[];
+        "componentFactoryTag": string;
+        /**
+          * Objeto com a fonte de dados do formulário
+         */
         "model": any;
+        "oInputConfiguracaoSimulacao": IConfiguracaoSimulacao;
     }
     interface MyInput {
         "placeholder": string;
@@ -73,11 +105,17 @@ declare global {
         prototype: HTMLMyAlertElement;
         new (): HTMLMyAlertElement;
     };
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
+    interface HTMLMyComponentFactoryElement extends Components.MyComponentFactory, HTMLStencilElement {
     }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
+    var HTMLMyComponentFactoryElement: {
+        prototype: HTMLMyComponentFactoryElement;
+        new (): HTMLMyComponentFactoryElement;
+    };
+    interface HTMLMyCustomComponentElement extends Components.MyCustomComponent, HTMLStencilElement {
+    }
+    var HTMLMyCustomComponentElement: {
+        prototype: HTMLMyCustomComponentElement;
+        new (): HTMLMyCustomComponentElement;
     };
     interface HTMLMyFormElement extends Components.MyForm, HTMLStencilElement {
     }
@@ -117,7 +155,8 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "my-alert": HTMLMyAlertElement;
-        "my-component": HTMLMyComponentElement;
+        "my-component-factory": HTMLMyComponentFactoryElement;
+        "my-custom-component": HTMLMyCustomComponentElement;
         "my-form": HTMLMyFormElement;
         "my-input": HTMLMyInputElement;
         "my-range": HTMLMyRangeElement;
@@ -132,25 +171,55 @@ declare namespace LocalJSX {
         "onOnhided"?: (event: CustomEvent<IHidedEvent>) => void;
         "text"?: string;
     }
-    interface MyComponent {
+    interface MyComponentFactory {
         /**
-          * The first name
+          * Eventos do componente retornado
          */
-        "first"?: string;
+        "arrConfig"?: IConfigComponenteFactory[];
         /**
-          * The last name
+          * Eventos do componente retornado
          */
-        "last"?: string;
+        "eventos"?: any;
         /**
-          * The middle name
+          * Propriedades do componente retornado
          */
-        "middle"?: string;
+        "propriedades"?: any;
+        /**
+          * tipo de componente desejado
+         */
+        "tipo"?: number;
+    }
+    interface MyCustomComponent {
+        /**
+          * Eventos do componente retornado
+         */
+        "eventos"?: any;
+        /**
+          * Propriedades do componente retornado
+         */
+        "propriedades"?: any;
+        /**
+          * Tag do componente retornado
+         */
+        "tag"?: string;
     }
     interface MyForm {
-        "campos"?: ICampoForm[];
-        "model"?: any;
         /**
-          * Evento de mudança de valor
+          * Array de configurações da fabricação de componentes do formulário
+         */
+        "arrConfigComponentes"?: IConfigComponenteFactory[];
+        /**
+          * Array de configuração dos campos que serão apresentados no formulário
+         */
+        "campos"?: ICampoForm[];
+        "componentFactoryTag"?: string;
+        /**
+          * Objeto com a fonte de dados do formulário
+         */
+        "model"?: any;
+        "oInputConfiguracaoSimulacao"?: IConfiguracaoSimulacao;
+        /**
+          * Evento de mudança de valor do formulário
          */
         "onValueChange"?: (event: CustomEvent<any>) => void;
     }
@@ -194,7 +263,8 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "my-alert": MyAlert;
-        "my-component": MyComponent;
+        "my-component-factory": MyComponentFactory;
+        "my-custom-component": MyCustomComponent;
         "my-form": MyForm;
         "my-input": MyInput;
         "my-range": MyRange;
@@ -208,7 +278,8 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "my-alert": LocalJSX.MyAlert & JSXBase.HTMLAttributes<HTMLMyAlertElement>;
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "my-component-factory": LocalJSX.MyComponentFactory & JSXBase.HTMLAttributes<HTMLMyComponentFactoryElement>;
+            "my-custom-component": LocalJSX.MyCustomComponent & JSXBase.HTMLAttributes<HTMLMyCustomComponentElement>;
             "my-form": LocalJSX.MyForm & JSXBase.HTMLAttributes<HTMLMyFormElement>;
             "my-input": LocalJSX.MyInput & JSXBase.HTMLAttributes<HTMLMyInputElement>;
             "my-range": LocalJSX.MyRange & JSXBase.HTMLAttributes<HTMLMyRangeElement>;

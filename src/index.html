@@ -26,7 +26,7 @@
       <div class="teste-componente">
         <div class="titulo">My Component</div>
         <div class="componente-container">
-          <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
+          <!-- <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component> -->
         </div>
       </div>
       <div class="teste-componente my-alert">
@@ -113,27 +113,94 @@
             var modelForm = {
               nome: 'Gian Barzano',
               email: 'ghcb@hotmail.com',
-              telefone: '5245-5541'
+              telefone: '5245-5541',
+              vrhora: 25,
+              sexo: 2,
+              'meu-outro-campo': 'Se liguem no meu campo criado automaticamente'
             };
             myForm.model = modelForm;
             myForm.campos = [
-              {nome: 'nome', tipo: 'input-text'},
-              {nome: 'email', tipo: 'input-text'},
-              {nome: 'alerta', tipo: 'custom'},
-              {nome: 'telefone', tipo: 'input-text'},
-              {nome: 'alerta-02', tipo: 'custom'},
+              {
+                nome: 'nome', tipo: 1, campoModel: 'valor', config: {
+                  propriedades: {                    
+                    rotulo: 'Nome completo',
+                    placeholder: 'Nome completo..'
+                  },
+                  eventoChangeName: 'onValueChange',
+                  eventoChangeValueField: 'valor'
+                }
+              },
+              {
+                nome: 'email', tipo: 1, campoModel: 'valor', config: {
+                  propriedades: {                    
+                    rotulo: 'E-mail',
+                    placeholder: 'E-mail..'
+                  },
+                  eventos: {
+                    onValueChange: (params) => {
+                      console.log("Parametros", params);
+                    }
+                  },
+                  eventoChangeName: 'onValueChange',
+                  eventoChangeValueField: 'valor'
+                }
+              },
+              {
+                nome: 'telefone', tipo: 1, campoModel: 'valor', config: {
+                  propriedades: {                    
+                    rotulo: 'Telefone',
+                    placeholder: 'Telefone..'
+                  },
+                  eventoChangeName: 'onValueChange',
+                  eventoChangeValueField: 'valor'
+                }
+              },
+              {
+                nome: 'vrhora', tipo: 3, campoModel: 'valor', config: {
+                  propriedades: {                    
+                    rotulo: 'Valor por hora',
+                    placeholder: 'Valor por hora..'
+                  },
+                  eventoChangeName: 'onValueChange',
+                  eventoChangeValueField: 'valor'
+                }
+              },
+              {
+                nome: 'sexo', tipo: 2, campoModel: 'model', config: {
+                  propriedades: {
+                    values: [
+                      {name: 'Homem', value: 1},
+                      {name: 'Mulher', value: 2},
+                      {name: 'Transexuais', value: 3}
+                    ]
+                  },
+                  eventoChangeName: 'onValueChange'
+                }
+              },
+              {nome: 'alerta', customizado: true},
+              {nome: 'alerta-02', customizado: true},
+              {nome: 'meu-outro-campo', customizado: true},
             ];
-
+            myForm.arrConfigComponentes = [
+              {
+                tipo: 1,
+                tag: 'my-input'
+              },
+              {
+                tipo: 2,
+                tag: 'my-select'
+              },
+              {
+                tipo: 3,
+                tag: 'my-range'
+              }
+            ]
             function myFormOnValueChange(e){
               console.log("My form changed value", e.detail);
               modelForm = e.detail.value;
               myForm.model = modelForm;
             }
             myForm.addEventListener("valueChange", myFormOnValueChange);
-
-            setTimeout(() => {
-              myForm.querySelector('.item-form-customizado .filho').innerHTML = 'Mudei o texto do alerta!';
-            }, 7000);
           </script>
         </div>
       </div>
@@ -141,6 +208,42 @@
         <div class="titulo">Click Company Range</div>
         <div class="componente-container">
           <my-range valor=1 placeholder="Valor" rotulo="Valor"></my-range>
+        </div>
+      </div>
+      <div class="teste-componente my-factory">
+        <div class="titulo">Click Company Factory</div>
+        <div class="componente-container">
+          <my-component-factory />
+          <script>
+            var blockMyCP = document.querySelector('.lista-componentes .teste-componente.my-factory');
+            var myCP = blockMyCP.querySelector('my-component-factory');
+  
+            myCP.tipo = 3;
+            myCP.arrConfig = [
+              {
+                tipo: 1,
+                tag: 'my-input'
+              },
+              {
+                tipo: 2,
+                tag: 'my-select'
+              },
+              {
+                tipo: 3,
+                tag: 'my-range'
+              }
+            ];
+            myCP.eventos = {
+              onValueChange: (params) => {
+                console.log("my-factory-component - change", params);
+              }
+            };
+            myCP.propriedades = {
+              rotulo: 'Valor por hora',
+                placeholder: 'Valor por hora..',
+                valor: 32
+            };
+          </script>
         </div>
       </div>
     </div>
