@@ -37,3 +37,9 @@ services:
     command: npm run build
     volumes:
       - .:/usr/app/
+
+  publish:
+    image: mystencil:1.0
+    command: npm publish
+    volumes:
+      - .:/usr/app/
