@@ -1,4 +1,4 @@
-<!doctype html><html dir="ltr" lang="en"><head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"> <title>Stencil Component Starter</title> <script type="module" data-stencil data-resources-url="/build/" data-stencil-namespace="click-company-components">import{p as t,b as e}from"/build/p-8d116f2c.js";(()=>{const e=import.meta.url,a={};return""!==e&&(a.resourcesUrl=new URL(".",e).href),t(a)})().then(t=>e([["p-0aff97de",[[2,"my-alert",{text:[1],kind:[1],hide:[32]},[[0,"click","onClick"]]],[1,"my-component",{first:[1],middle:[1],last:[1]}],[6,"my-form",{model:[1032],campos:[16]}],[2,"my-input",{valor:[1025],rotulo:[1],placeholder:[1]}],[2,"my-range",{valor:[1025],rotulo:[1],placeholder:[1]}],[2,"my-select",{multiple:[4],model:[1032],values:[1040],isOpen:[32]}],[6,"my-tab",{name:[1],active:[4]},[[0,"click","onClick"]]],[6,"my-tabs",{activeTab:[1025,"active-tab"]},[[0,"tabActivate","tabChildActivate"]]]]]],t));</script> <script nomodule="" src="/build/click-company-components.js" data-stencil></script> <style>.lista-componentes {
+<!doctype html><html dir="ltr" lang="en"><head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"> <title>Stencil Component Starter</title> <script type="module" src="/build/click-company-components.esm.js" data-stencil></script> <script nomodule="" src="/build/click-company-components.js" data-stencil></script> <style>.lista-componentes {
         padding: 10px;
         border: 1px dashed skyblue;
       }
@@ -8,7 +8,7 @@
       .lista-componentes .teste-componente .titulo {
         font-size: 14px;
         font-weight: 600;
-      }</style> </head> <body> <div class="lista-componentes"> <div class="teste-componente"> <div class="titulo">My Component</div> <div class="componente-container"> <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component> </div> </div> <div class="teste-componente my-alert"> <div class="titulo">Click Company Alert!</div> <div class="componente-container"> <my-alert kind="info" text="this is a very not important alert!"></my-alert> <my-alert kind="success" text="this is a very not important alert!"></my-alert> <my-tabs active-tab="Tab2"> <my-tab name="Tab1">Tab One</my-tab> <my-tab name="Tab2">Tab Two</my-tab> <my-tab name="Tab3" active="">Tab Three</my-tab> </my-tabs> <script>// Test myAlert
+      }</style> </head> <body> <div class="lista-componentes"> <div class="teste-componente"> <div class="titulo">My Component</div> <div class="componente-container"> <!-- <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component> --> </div> </div> <div class="teste-componente my-alert"> <div class="titulo">Click Company Alert!</div> <div class="componente-container"> <my-alert kind="info" text="this is a very not important alert!"></my-alert> <my-alert kind="success" text="this is a very not important alert!"></my-alert> <my-tabs active-tab="Tab2"> <my-tab name="Tab1">Tab One</my-tab> <my-tab name="Tab2">Tab Two</my-tab> <my-tab name="Tab3" active="">Tab Three</my-tab> </my-tabs> <script>// Test myAlert
             var blockMyAlert = document.querySelector('.lista-componentes .teste-componente.my-alert');
             var myAlert = blockMyAlert.querySelector('my-alert');
 
@@ -35,24 +35,125 @@
             var modelForm = {
               nome: 'Gian Barzano',
               email: 'ghcb@hotmail.com',
-              telefone: '5245-5541'
+              telefone: '5245-5541',
+              vrhora: 25,
+              sexo: 2,
+              'meu-outro-campo': 'Se liguem no meu campo criado automaticamente'
             };
             myForm.model = modelForm;
             myForm.campos = [
-              {nome: 'nome', tipo: 'input-text'},
-              {nome: 'email', tipo: 'input-text'},
-              {nome: 'alerta', tipo: 'custom'},
-              {nome: 'telefone', tipo: 'input-text'},
-              {nome: 'alerta-02', tipo: 'custom'},
+              {
+                nome: 'nome', tipo: 1, campoModel: 'valor', config: {
+                  propriedades: {                    
+                    rotulo: 'Nome completo',
+                    placeholder: 'Nome completo..'
+                  },
+                  eventoChangeName: 'onValueChange',
+                  eventoChangeValueField: 'valor'
+                }
+              },
+              {
+                nome: 'email', tipo: 1, campoModel: 'valor', config: {
+                  propriedades: {                    
+                    rotulo: 'E-mail',
+                    placeholder: 'E-mail..'
+                  },
+                  eventos: {
+                    onValueChange: (params) => {
+                      console.log("Parametros", params);
+                    }
+                  },
+                  eventoChangeName: 'onValueChange',
+                  eventoChangeValueField: 'valor'
+                }
+              },
+              {
+                nome: 'telefone', tipo: 1, campoModel: 'valor', config: {
+                  propriedades: {                    
+                    rotulo: 'Telefone',
+                    placeholder: 'Telefone..'
+                  },
+                  eventoChangeName: 'onValueChange',
+                  eventoChangeValueField: 'valor'
+                }
+              },
+              {
+                nome: 'vrhora', tipo: 3, campoModel: 'valor', config: {
+                  propriedades: {                    
+                    rotulo: 'Valor por hora',
+                    placeholder: 'Valor por hora..'
+                  },
+                  eventoChangeName: 'onValueChange',
+                  eventoChangeValueField: 'valor'
+                }
+              },
+              {
+                nome: 'sexo', tipo: 2, campoModel: 'model', config: {
+                  propriedades: {
+                    values: [
+                      {name: 'Homem', value: 1},
+                      {name: 'Mulher', value: 2},
+                      {name: 'Transexuais', value: 3}
+                    ]
+                  },
+                  eventoChangeName: 'onValueChange'
+                }
+              },
+              {nome: 'alerta', customizado: true},
+              {nome: 'alerta-02', customizado: true},
+              {nome: 'meu-outro-campo', customizado: true},
             ];
-
+            myForm.arrConfigComponentes = [
+              {
+                tipo: 1,
+                tag: 'my-input'
+              },
+              {
+                tipo: 2,
+                tag: 'my-select'
+              },
+              {
+                tipo: 3,
+                tag: 'my-range'
+              }
+            ]
             function myFormOnValueChange(e){
               console.log("My form changed value", e.detail);
               modelForm = e.detail.value;
               myForm.model = modelForm;
             }
-            myForm.addEventListener("valueChange", myFormOnValueChange);
-
-            setTimeout(() => {
-              myForm.querySelector('.item-form-customizado .filho').innerHTML = 'Mudei o texto do alerta!';
-            }, 7000);</script> </div> </div> <div class="teste-componente"> <div class="titulo">Click Company Range</div> <div class="componente-container"> <my-range valor="1" placeholder="Valor" rotulo="Valor"></my-range> </div> </div> </div> </body></html>
+            myForm.addEventListener("valueChange", myFormOnValueChange);</script> </div> </div> <div class="teste-componente"> <div class="titulo">Click Company Range</div> <div class="componente-container"> <my-range valor="1" placeholder="Valor" rotulo="Valor"></my-range> </div> </div> <div class="teste-componente my-factory"> <div class="titulo">Click Company Factory</div> <div class="componente-container"> <my-component-factory> <script>var blockMyCP = document.querySelector('.lista-componentes .teste-componente.my-factory');
+            var myCP = blockMyCP.querySelector('my-component-factory');
+  
+            myCP.tipo = 3;
+            myCP.arrConfig = [
+              {
+                tipo: 1,
+                tag: 'my-input'
+              },
+              {
+                tipo: 2,
+                tag: 'my-select'
+              },
+              {
+                tipo: 3,
+                tag: 'my-range'
+              }
+            ];
+            myCP.eventos = {
+              onValueChange: (params) => {
+                console.log("my-factory-component - change", params);
+              }
+            };
+            myCP.propriedades = {
+              rotulo: 'Valor por hora',
+                placeholder: 'Valor por hora..',
+                valor: 32
+            };</script> </my-component-factory></div> </div> </div> <script>if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+  // auto-unregister service worker during dev mode
+  navigator.serviceWorker.getRegistration().then(function(registration) {
+  if (registration) {
+    registration.unregister().then(function() { location.reload(true) });
+  }
+  });
+}</script></body></html>

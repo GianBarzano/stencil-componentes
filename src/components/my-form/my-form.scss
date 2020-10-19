@@ -1,3 +1,24 @@
 :host {
   display: block;
 }
+
+table {
+  th {
+    background: #ccc;
+  }
+
+  th, td {
+    &.tipo-valor {
+      text-align: right;
+    }
+    &.tipo-qtd {
+      text-align: center;
+    }
+  }
+
+  tr{
+    &:nth-child(even) {
+      background: #eaeaea;
+    }
+  }
+}
